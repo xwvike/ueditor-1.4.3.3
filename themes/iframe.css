@@ -44,3 +44,6 @@ a{
 img{
     max-width: 100%;
 }
+img::selection{
+    background: rgba(7,193,96,0.1);
+}
