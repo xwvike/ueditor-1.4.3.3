@@ -3,7 +3,7 @@
     UE.Editor.prototype.loadServerConfig = function () {
         var me = this;
         me._serverConfigLoaded = false;
-        let config = {
+        var config = {
             // 执行上传图片的action名称，默认值：uploadimage
             "imageActionName": "image",
             // 提交的图片表单名称，默认值：upfile
