@@ -1,0 +1,46 @@
+/*可以在这里添加你自己的css*/
+html{
+    line-height: 1.6;
+    text-underline-position: under;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.1em;
+    letter-spacing:0.034em;
+    word-wrap:break-word;
+    -webkit-hyphens:auto;
+    hyphens:auto
+}
+* {
+    -webkit-max-logical-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+    word-wrap: break-word!important;
+}
+
+a{
+    color: #576b95;
+    text-decoration: none;
+    display:inline-block;
+}
+.weapp_text_link::before {
+    content: "";
+    display: inline-block;
+    line-height: 1;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAb1BMVEUAAAB4it11h9x2h9x2h9x2htx8j+R8i+B1h9x2h9x3h92Snv91htt2h9x1h9x4h9x1h9x1h9x2idx1h9t2h9t1htt1h9x1h9x1htx2h9x1h912h9x4h913iN17juOOjuN1iNx2h9t4h958i+B1htvejBiPAAAAJHRSTlMALPLcxKcVEOXXUgXtspU498sx69DPu5+Yc2JeRDwbCYuIRiGBtoolAAAA3ElEQVQoz62S1xKDIBBFWYiFYImm2DWF///G7DJEROOb58U79zi4O8iOo8zuCRfV8EdFgbYE49qFQs8ksJInajOA1wWfYvLcGSueU/oUGBtPpti09uNS68KTMcrQ5jce4kmN/HKn9XVPAo702JEdx9hTUrWUqVrI3KwUmM1NhIWMKdwiGvpGMWZOAj1PZuzAxHwhVSplrajoseBnbyDHAwvrtvKKhdqTtFBkL8wO5ijcsS3G1JMNvQ5mdW7fc0x0+ZcnlJlZiflAomdEyFaM7qeK2JahEjy5ZyU7jC/q/Rz/DgqEuAAAAABJRU5ErkJggg==);
+    vertical-align: middle;
+    font-size: 11px;
+    color: #888;
+    border-radius: 10px;
+    background-color: #F4F4F4;
+    margin-right: 6px;
+    margin-top: -4px;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+}
+img{
+    max-width: 100%;
+}
