@@ -983,6 +983,7 @@ var utils = UE.utils = {
         return array;
     },
     serializeParam:function (json) {
+        console.log(json)
         var strArr = [];
         for (var i in json) {
             //忽略默认的几个参数
@@ -997,6 +998,7 @@ var utils = UE.utils = {
                 }
             }
         }
+        console.log(strArr.join("&"))
         return strArr.join("&");
     },
     formatUrl:function (url) {
