@@ -26,6 +26,8 @@ UE.plugins['catchremoteimage'] = function () {
             catcherUrlPrefix = me.getOpt('catcherUrlPrefix'),
             catcherFieldName = me.getOpt('catcherFieldName');
 
+        console.log(catcherLocalDomain, catcherActionUrl, catcherUrlPrefix, catcherFieldName)
+
         var remoteImages = [],
             imgs = domUtils.getElementsByTagName(me.document, "img"),
             test = function (src, urls) {
@@ -61,13 +63,28 @@ UE.plugins['catchremoteimage'] = function () {
                     } catch (e) {
                         return;
                     }
+                    var newList = []
+                    for (var a = 0;a<remoteImages.length;a++){
+                        var nUrl = info.data[a]
+                        var obj = {
+                            source:remoteImages[a],
+                            state:'',
+                            url:null
+                        }
+                        if (nUrl){
+                            obj.state = 'SUCCESS'
+                            obj.url = nUrl
+                        }else {
+                            obj.state = 'FAIL'
+                        }
+                        newList.push(obj)
+                    }
 
                     /* 获取源路径和新路径 */
-                    var i, j, ci, cj, oldSrc, newSrc, list = info.list;
-
+                    var i, j, ci, cj, oldSrc, newSrc;
                     for (i = 0; ci = imgs[i++];) {
                         oldSrc = ci.getAttribute("_src") || ci.src || "";
-                        for (j = 0; cj = list[j++];) {
+                        for (j = 0; cj = newList[j++];) {
                             if (oldSrc == cj.source && cj.state == "SUCCESS") {  //抓取失败时不做替换处理
                                 newSrc = catcherUrlPrefix + cj.url;
                                 domUtils.setAttributes(ci, {
@@ -90,15 +107,15 @@ UE.plugins['catchremoteimage'] = function () {
         function catchremoteimage(imgs, callbacks) {
             var params = utils.serializeParam(me.queryCommandValue('serverparam')) || '',
                 url = utils.formatUrl(catcherActionUrl + (catcherActionUrl.indexOf('?') == -1 ? '?':'&') + params),
-                isJsonp = utils.isCrossDomainUrl(url),
                 opt = {
                     'method': 'POST',
-                    'dataType': isJsonp ? 'jsonp':'',
+                    'dataType': '',
                     'timeout': 60000, //单位：毫秒，回调请求超时设置。目标用户如果网速不是很快的话此处建议设置一个较大的数值
                     'onsuccess': callbacks["success"],
-                    'onerror': callbacks["error"]
+                    'onerror': callbacks["error"],
+                    'data':{catcherFieldName:[]}
                 };
-            opt[catcherFieldName] = imgs;
+            opt.data[catcherFieldName] = imgs;
             ajax.request(url, opt);
         }
 

@@ -90,18 +90,21 @@ UE.plugin.register('autoupload', function (){
             fd = new FormData(),
             params = utils.serializeParam(me.queryCommandValue('serverparam')) || '',
             url = utils.formatUrl(actionUrl + (actionUrl.indexOf('?') == -1 ? '?':'&') + params);
+        var user = JSON.parse(sessionStorage.getItem('user')||'{}');
 
         fd.append(fieldName, file, file.name || ('blob.' + file.type.substr('image/'.length)));
         fd.append('type', 'ajax');
         xhr.open("post", url, true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.setRequestHeader('Authorization', 'Bearer ' + user.token||'');
         xhr.addEventListener('load', function (e) {
             try{
                 var json = (new Function("return " + utils.trim(e.target.response)))();
-                if (json.state == 'SUCCESS' && json.url) {
+                if (json.code == '0' && json.data) {
+                    json.url = json.data;
                     successHandler(json);
                 } else {
-                    errorHandler(json.state);
+                    errorHandler(json.code);
                 }
             }catch(er){
                 errorHandler(me.getLang('autoupload.loadError'));

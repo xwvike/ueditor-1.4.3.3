@@ -1508,11 +1508,16 @@
          */
         getActionUrl: function(action){
             var actionName = this.getOpt(action) || action,
-                imageUrl = this.getOpt('imageUrl'),
                 serverUrl = this.getOpt('serverUrl');
-
-            if(!serverUrl && imageUrl) {
-                serverUrl = imageUrl.replace(/^(.*[\/]).+([\.].+)$/, '$1controller$2');
+            switch (actionName) {
+                case this.getOpt('imageActionName'):
+                    serverUrl = serverUrl + this.getOpt('imageUploadUrl');
+                    break;
+                case this.getOpt('catcherActionName'):
+                    serverUrl = serverUrl + this.getOpt('catcherUrl');
+                    break;
+                default:
+                    break;
             }
 
             if(serverUrl) {

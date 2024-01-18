@@ -46,13 +46,12 @@
 
             // 例外的图片抓取域名
             "catcherLocalDomain": [
-                "127.0.0.1",
-                "localhost"
+                "file.xtjstatic.cn"
             ],
             // 执行抓取远程图片的action名称，默认值：catchimage
             "catcherActionName": "catch",
             // 提交的图片列表表单名称，默认值：source
-            "catcherFieldName": "source",
+            "catcherFieldName": "image_urls",
             // 图片访问路径前缀，默认值：空
             "catcherUrlPrefix": "",
             // 上传保存路径,可以自定义保存路径和文件名格式，默认值：{filename}{rand:6}

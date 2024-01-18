@@ -85,10 +85,11 @@ UE.ajax = function () {
                 clearTimeout(timerID);
             }
         }, ajaxOpts.timeout);
-
+        var user = JSON.parse(sessionStorage.getItem('user')||'{}');
         var method = ajaxOpts.method.toUpperCase();
         var str = url + (url.indexOf("?") == -1 ? "?" : "&") + (method == "POST" ? "" : submitStr + "&noCache=" + +new Date);
         xhr.open(method, str, ajaxOpts.async);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + user.token||'');
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (!timeIsOut && xhr.status == 200) {
@@ -99,8 +100,8 @@ UE.ajax = function () {
             }
         };
         if (method == "POST") {
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send(submitStr);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(ajaxOpts.data));
         } else {
             xhr.send(null);
         }
