@@ -34,7 +34,7 @@
         <button onmousedown="isFocus(event)">编辑器是否获得焦点</button>
         <button onmousedown="setblur(event)" >编辑器失去焦点</button>
         <button onmousedown="link(event)" >插入固定链接</button>
-
+        <button onmousedown="radius(event)" >图片圆角</button>
     </div>
     <div>
         <button onclick="getText()">获得当前选中的文本</button>
@@ -65,9 +65,6 @@
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor',{
         initialFrameWidth: 578,
-        serverUrl:'https://api.xtjzx.cn',
-        imageUploadUrl:'/kaobiantong/api/admin/image/image',
-        catcherUrl:'/kaobiantong/api/admin/image/images'
     });
 
 
@@ -88,6 +85,9 @@
             'href':'',
             'target':'_blank'
         })
+    }
+    function radius(e){
+        UE.getEditor('editor').execCommand("imageradius",'20px')
     }
     function insertHtml() {
         var value = prompt('插入html代码', '');

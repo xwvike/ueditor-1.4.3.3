@@ -26,7 +26,6 @@ UE.plugins['catchremoteimage'] = function () {
             catcherUrlPrefix = me.getOpt('catcherUrlPrefix'),
             catcherFieldName = me.getOpt('catcherFieldName');
 
-        console.log(catcherLocalDomain, catcherActionUrl, catcherUrlPrefix, catcherFieldName)
 
         var remoteImages = [],
             imgs = domUtils.getElementsByTagName(me.document, "img"),
