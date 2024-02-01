@@ -189,7 +189,7 @@
             var popEl = this.getDom();
             uiUtils.setViewportOffset(popEl, {
                 left: left,
-                top: rect.top - popSize.height - 5
+                top: top
             });
             domUtils.removeClasses(popEl, ANCHOR_CLASSES);
             popEl.className += ' ' + ANCHOR_CLASSES[(sideUp ? 1 : 0) * 2 + (sideLeft ? 1 : 0)];
