@@ -98,6 +98,9 @@ UE.plugin.register('autoupload', function (){
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader('Authorization', 'Bearer ' + user.token||'');
         xhr.addEventListener('load', function (e) {
+            if(e.target.status===403&&editor.getOpt('inFrame')){
+                window.postMessage({ type: 'showMessage', content:'你还未绑定新途径在线账号' }, '*')
+            }
             try{
                 var json = (new Function("return " + utils.trim(e.target.response)))();
                 if (json.code == '0' && json.data) {
