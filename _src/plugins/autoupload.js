@@ -44,7 +44,7 @@ UE.plugin.register('autoupload', function (){
                     loader.setAttribute('alt', data.original || '');
                     loader.removeAttribute('id');
                     domUtils.removeClasses(loader, 'loadingclass');
-                    console.log(loader)
+                    editor.fireEvent('contentchange')
                 }
             };
         } else {
