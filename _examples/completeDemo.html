@@ -67,6 +67,10 @@
         initialFrameWidth: 578,
     });
 
+    ue.addListener('contentChange',function(){
+        console.log('contentChange',ue.getContent())
+    })
+
 
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
